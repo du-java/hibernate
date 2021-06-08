@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'by.du'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.5.0.Final'
+    implementation 'com.h2database:h2:1.4.200'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+}
