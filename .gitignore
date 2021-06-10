@@ -2,3 +2,4 @@
 .gradle/
 *.iml
 *.db
+build/

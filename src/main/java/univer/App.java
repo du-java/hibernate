@@ -1,12 +1,9 @@
 package univer;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import univer.model.Group;
 import univer.model.Student;
@@ -33,11 +30,10 @@ public class App {
 //        final Integer singleResult = cq.getSingleResult();
 //        System.out.println(singleResult);
 
-//        addGroups(session);
-//        addStudents(session);
-//        updateStud(session);
-//        ex(session);
-
+        addGroups(session);
+        addStudents(session);
+        updateStud(session);
+        ex(session);
 
         final Query<Group> from_group = session.createQuery("from Group", Group.class);
         System.out.println(from_group.getResultList());
@@ -67,7 +63,6 @@ public class App {
     private static void addGroups(Session session) {
         Transaction transaction = session.beginTransaction();
         try {
-
             final Group gr1 = Group.builder().name("gr1").build();
             final Group gr2 = Group.builder().name("gr2").build();
 
@@ -83,8 +78,6 @@ public class App {
     private static void addStudents(Session session) {
         Transaction transaction = session.beginTransaction();
         try {
-
-
             final Student s1 = Student.builder()
                     .firstname("Ivan")
                     .lastname("Ivanov")
@@ -107,8 +100,6 @@ public class App {
         Transaction transaction = session.beginTransaction();
         try {
             final Group group1 = session.get(Group.class, 3L);
-//            final Group group2 = session.find(Group.class, 4);
-
 
             final Student s1 = session.get(Student.class, 1L);
             final Student s2 = session.get(Student.class, 2L);
@@ -141,9 +132,7 @@ public class App {
                 s2.setGroup(group1);
             }
 
-            final Group group = session.get(Group.class, 1L);
             throw new IllegalStateException();
-
         } catch (Exception ex) {
             transaction.rollback();
         }
